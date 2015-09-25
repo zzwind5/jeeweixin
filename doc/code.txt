@@ -1,0 +1,30 @@
+@RequestMapping(value = "/{username}/index")
+	public ModelAndView index(String id,@PathVariable String username){
+	
+动态SQL
+<trim prefix="where" prefixOverrides="and|or">
+	        1=1 
+			<if test="msgtype != null and msgtype != '' ">
+			    AND  MSGTYPE = #{msgtype}
+			</if>
+		</trim>	 
+
+in 语句
+<foreach item="item" index="index" collection="array" open="(" separator="," close=")">  
+ #{item}  
+</foreach>  		
+
+批量插入
+<insert id="addList" parameterType="list">  
+    INSERT INTO t_oa_gongzi_detail ( USERID,NAME,JIBENGONGZI,JIXIAOGONGZI,HEJI,KAOQIN,QUEQINSHU,XISHU,BUTIE,QITAKOUKUAN,XISHUGONGZI,QUEQINKOUKUAN,KOUKUANHOUHEJI,YILIAOBAOXIAN,SHIYEXIAN,GONGJIJIN,YANGLAOBAOXIAN,BAOXIANHEJI,JISHUIGONGZI,DAIJIAOGESHUI,SHIFAGONGZI,YEAR,MONTH,GONGZIID,CREATETIME )
+    VALUES
+    <foreach  collection="list" item="item" index="index" separator="," >  
+       ( #{item.userid},#{item.name},#{item.jibengongzi},#{item.jixiaogongzi},#{item.heji},#{item.kaoqin},#{item.queqinshu},#{item.xishu},#{item.butie},#{item.qitakoukuan},#{item.xishugongzi},#{item.queqinkoukuan},#{item.koukuanhouheji},#{item.yiliaobaoxian},#{item.shiyexian},#{item.gongjijin},#{item.yanglaobaoxian},#{item.baoxianheji},#{item.jishuigongzi},#{item.daijiaogeshui},#{item.shifagongzi},#{item.year},#{item.month},#{item.gongziid},#{item.createtime} ) 
+    </foreach> 
+</insert>
+
+
+Tomcat server.xml
+<Context docBase="C:/JavaTest/demo/webroot" path="/demo" reloadable="true">
+
+

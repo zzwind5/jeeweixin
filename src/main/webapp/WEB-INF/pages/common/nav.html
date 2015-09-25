@@ -1,0 +1,34 @@
+
+<div style="height:10px;"></div>
+<ul class="nav-ul">
+	<li>
+		<span class="title">系统管理</span>
+	</li>
+	<li <#if cur_nav?? && cur_nav == 'user' > class="cur-nav" </#if> ><a href="${s.base}/cms/sysUser/list.html">
+		<span >用户管理</span>
+	</a></li>
+</ul>
+
+<ul class="nav-ul">
+	<li>
+		<span class="title">开发者公众账号</span>
+	</li>
+	<li  <#if cur_nav?? && cur_nav == 'urltoken' > class="cur-nav" </#if> ><a href="${s.base}/wxcms/urltoken.html">
+		<span>URL 和  Token</span>
+	</a></li>
+	<li  <#if cur_nav?? && cur_nav == 'text' > class="cur-nav" </#if> ><a href="${s.base}/msgtext/list.html">
+		<span>文本消息</span>
+	</a></li>
+	<li  <#if cur_nav?? && cur_nav == 'news' > class="cur-nav" </#if> ><a href="${s.base}/msgnews/list.html">
+		<span>图文消息</span>
+	</a></li>
+	<li  <#if cur_nav?? && cur_nav == 'menu' > class="cur-nav" </#if> ><a href="${s.base}/wxcms/accountMenuGroup/paginationEntity.html">
+		<span>菜单管理</span>
+	</a></li>
+	<li  <#if cur_nav?? && cur_nav == 'fans' > class="cur-nav" </#if> ><a href="${s.base}/accountfans/paginationEntity.html">
+		<span>粉丝管理</span>
+	</a></li>
+</ul>
+
+
+

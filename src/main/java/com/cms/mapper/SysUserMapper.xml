@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://10.20.91.130/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.cms.mapper.SysUserDao">
+
+
+	<select id="list" parameterType="com.cms.domain.SysUser" resultType="com.cms.domain.SysUser">
+		SELECT * FROM t_cms_sys_user ORDER BY ID
+	</select>
+
+	<select id="getPageTotalCount" parameterType="com.cms.domain.SysUser" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM t_cms_sys_user
+	</select>
+
+	<select id="listPage" resultType="com.cms.domain.SysUser">
+		SELECT * FROM t_cms_sys_user ORDER BY ID LIMIT #{param2.start} , #{param2.pageSize} 
+	</select>
+
+	<select id="getById" parameterType="java.lang.String" resultType="com.cms.domain.SysUser">
+		SELECT * FROM t_cms_sys_user WHERE ID = #{id}
+	</select>
+	
+	<select id="getLoginUser" parameterType="com.cms.domain.SysUser" resultType="com.cms.domain.SysUser">
+		SELECT * FROM t_cms_sys_user 
+		WHERE ENABLE = 1
+		AND loginname = #{loginname}
+		AND password = #{password}
+	</select>
+
+	<insert id="add" parameterType="com.cms.domain.SysUser" flushCache="true"  useGeneratedKeys="true" keyProperty="id"  >
+		INSERT INTO t_cms_sys_user ( LOGINNAME,PASSWORD,REALNAME,GENDER,PHONE,EMAIL,BIRTHDAY,HEADIMAGE,ENABLE,RULEID,CREATETIME,OPENID,ID )  VALUES ( #{loginname},#{password},#{realname},#{gender},#{phone},#{email},#{birthday},#{headimage},#{enable},#{ruleid},#{createtime},#{openid},#{id} ) 
+	</insert>
+
+	<update id="update" parameterType="com.cms.domain.SysUser" flushCache="true">
+		UPDATE t_cms_sys_user SET LOGINNAME = #{loginname},REALNAME = #{realname},GENDER = #{gender},PHONE = #{phone},EMAIL = #{email},BIRTHDAY = #{birthday},HEADIMAGE = #{headimage},ENABLE = #{enable},RULEID = #{ruleid},OPENID = #{openid} WHERE ID = #{id} 
+	</update>
+
+	<delete id="delete" parameterType="com.cms.domain.SysUser" >
+		DELETE FROM t_cms_sys_user WHERE ID = #{id}
+	</delete>
+
+</mapper>

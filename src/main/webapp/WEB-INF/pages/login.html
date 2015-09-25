@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<#include "./common/res.html">
+	</head>
+	
+	<body class="bg">
+		<div id="id_fill_height"></div>
+		<div class="login-bg">
+			<div style="margin:0 auto;width:300px;height:300px;">
+				<form class="fm-form"  action="${s.base}/dologin.html" style="margin-left:80px;" method="post" onsubmit="return doSubmit();">
+					<div style="height:90px;"></div>
+					<div style="margin-left:90px;">
+						<span style="font-size:18px;font-weight:bold;">请 登 录</span>
+					</div>
+					<ul>
+						<li>
+							<#if errorFlag??>
+							<div id="id_msg" style="color:red;margin-left:85px;">用户名,密码不正确</div>
+							<#else>
+							<div id="id_msg" style="display:none;color:red;margin-left:85px;">用户名,密码不能为空</div>
+							</#if>
+						</li>
+						<li>
+							<label style="width:80px;">用户名：</label>
+							<input id="id_loginname" type="text" name="loginname" value="${user.loginname!}">
+						</li>
+						<li>
+							<label style="width:80px;">密码：</label>
+							<input id="id_password" type="password" name="password" value="">
+						</li>
+					</ul>
+					<div style="margin-left:80px;margin-top:20px;">
+						<input class="btn" type="submit" value="登 录"/>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			function doSubmit(){
+				var flag = true;
+				var loginname = $('#id_loginname').val();
+				var password = $('#id_password').val();
+				if(loginname.replace(/(\s*$)/g, '') == ''){
+					flag = false;
+				}
+				if(password.replace(/(\s*$)/g, '') == ''){
+					flag = false;
+				}
+				if(!flag){
+					$('#id_msg').css('display','block');
+				}
+				return flag;
+			}
+			
+			var main_height = $(document).height() - 450;
+			var fill_height = main_height/2;
+			$('#id_fill_height').css('height',fill_height);
+			
+		</script>
+	</body>
+</html>
+
+
